@@ -1,0 +1,180 @@
+Added Component: Designator=C1(CApacitor_1608)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C2(CApacitor_1608)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C3(Capacitor_20x12)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C4(CApacitor_1608)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C5(CApacitor_1608)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C6(CApacitor_1608)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C7(CApacitor_1608)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C8(Capacitor_20x12)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C9(Capacitor_20x12)
+Add component. Clean all parameters for all variants
+Added Component: Designator=CONN1(4PIN_1MMPITCH_FFC_FCP_ZIF)
+Add component. Clean all parameters for all variants
+Added Component: Designator=CONN2(4PIN_1MMPITCH_FFC_FCP_ZIF)
+Add component. Clean all parameters for all variants
+Added Component: Designator=CONN3(4Pin_PICO_EZ_MATE_Header)
+Add component. Clean all parameters for all variants
+Added Component: Designator=CONN4(10Pin_1mmpitch_FFC_FCP_ZIF)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D1(DIODE_17x38)
+Add component. Clean all parameters for all variants
+Added Component: Designator=LDO1(LDO_460x260)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "ST Microelectronics"; VariantName = "[No Variations]"
+Added Component: Designator=LED1(LED_1608)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R1(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R2(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R3(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=U1(MCHP-SOIC-SO28_N)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer URL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.microchip.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://ww1.microchip.com/downloads/en/DeviceDoc/70657F.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3Description"; Value = "Package Specification"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3URL"; Value = "http://www.microchip.com/stellent/groups/techpub_sg/documents/packagingspec/en012702.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink4Description"; Value = "Product URL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink4URL"; Value = "http://www.microchip.com/dsPIC33EP128MC202"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "Rev. F"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Microchip"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "Surface Mount"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "28-Lead Plastic Small Outline, 17.9 x 7.5 mm Body, 1.27 mm Pitch"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "SOIC-SO28"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageVersion"; Value = "C04-052C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "DSPIC33EP128MC202-I/SO"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 2"; Value = "Mouser"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "DSPIC33EP128MC202-I/SO-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 2"; Value = "579-33EP128MC202ISO"; VariantName = "[No Variations]"
+Added Component: Designator=X1(xTal_150x20)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Frequency"; Value = "8MHz"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manifacturer"; Value = "ECS International"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3V3 Pin=C1-Cap_p1
+Added Pin To Net: NetName=3V3 Pin=C2-Cap_p1
+Added Pin To Net: NetName=3V3 Pin=C4-Cap_p1
+Added Pin To Net: NetName=3V3 Pin=C8-Cap_p1
+Added Pin To Net: NetName=3V3 Pin=CONN4-9
+Added Pin To Net: NetName=3V3 Pin=R1-Res_p1
+Added Pin To Net: NetName=3V3 Pin=U1-7
+Added Pin To Net: NetName=3V3 Pin=U1-13
+Added Pin To Net: NetName=3V3 Pin=U1-28
+Added Net: Name=3V3
+Added Pin To Net: NetName=5V Pin=C9-Cap_p1
+Added Pin To Net: NetName=5V Pin=CONN1-3
+Added Pin To Net: NetName=5V Pin=CONN2-3
+Added Pin To Net: NetName=5V Pin=CONN3-3
+Added Net: Name=5V
+Added Pin To Net: NetName=\M\C\L\R\ Pin=D1-Cathode
+Added Pin To Net: NetName=\M\C\L\R\ Pin=U1-1
+Added Net: Name=\M\C\L\R\
+Added Pin To Net: NetName=AN0 Pin=CONN4-1
+Added Pin To Net: NetName=AN0 Pin=U1-2
+Added Net: Name=AN0
+Added Pin To Net: NetName=AN1 Pin=CONN4-2
+Added Pin To Net: NetName=AN1 Pin=U1-3
+Added Net: Name=AN1
+Added Pin To Net: NetName=AN2 Pin=CONN4-3
+Added Pin To Net: NetName=AN2 Pin=U1-4
+Added Net: Name=AN2
+Added Pin To Net: NetName=AN3 Pin=CONN4-4
+Added Pin To Net: NetName=AN3 Pin=U1-5
+Added Net: Name=AN3
+Added Pin To Net: NetName=AN4 Pin=CONN4-5
+Added Pin To Net: NetName=AN4 Pin=U1-6
+Added Net: Name=AN4
+Added Pin To Net: NetName=AN19 Pin=CONN4-6
+Added Pin To Net: NetName=AN19 Pin=U1-16
+Added Net: Name=AN19
+Added Pin To Net: NetName=AN20 Pin=CONN4-7
+Added Pin To Net: NetName=AN20 Pin=U1-17
+Added Net: Name=AN20
+Added Pin To Net: NetName=AN21 Pin=CONN4-8
+Added Pin To Net: NetName=AN21 Pin=U1-18
+Added Net: Name=AN21
+Added Pin To Net: NetName=GND Pin=C1-Cap_p2
+Added Pin To Net: NetName=GND Pin=C2-Cap_p2
+Added Pin To Net: NetName=GND Pin=C3-Cap_p2
+Added Pin To Net: NetName=GND Pin=C4-Cap_p2
+Added Pin To Net: NetName=GND Pin=C5-Cap_p2
+Added Pin To Net: NetName=GND Pin=C6-Cap_p1
+Added Pin To Net: NetName=GND Pin=C7-Cap_p1
+Added Pin To Net: NetName=GND Pin=CONN1-4
+Added Pin To Net: NetName=GND Pin=CONN1-GND
+Added Pin To Net: NetName=GND Pin=CONN1-GND
+Added Pin To Net: NetName=GND Pin=CONN2-4
+Added Pin To Net: NetName=GND Pin=CONN2-GND
+Added Pin To Net: NetName=GND Pin=CONN2-GND
+Added Pin To Net: NetName=GND Pin=CONN3-4
+Added Pin To Net: NetName=GND Pin=CONN3-GND
+Added Pin To Net: NetName=GND Pin=CONN3-GND
+Added Pin To Net: NetName=GND Pin=CONN4-10
+Added Pin To Net: NetName=GND Pin=CONN4-GND
+Added Pin To Net: NetName=GND Pin=CONN4-GND
+Added Pin To Net: NetName=GND Pin=LDO1-GND
+Added Pin To Net: NetName=GND Pin=LED1-Cathode
+Added Pin To Net: NetName=GND Pin=U1-8
+Added Pin To Net: NetName=GND Pin=U1-19
+Added Pin To Net: NetName=GND Pin=U1-27
+Added Net: Name=GND
+Added Pin To Net: NetName=NetC5_Cap_p1 Pin=C5-Cap_p1
+Added Pin To Net: NetName=NetC5_Cap_p1 Pin=D1-Anode
+Added Pin To Net: NetName=NetC5_Cap_p1 Pin=R1-Res_p2
+Added Net: Name=NetC5_Cap_p1
+Added Pin To Net: NetName=NetC8_Cap_p2 Pin=C8-Cap_p2
+Added Pin To Net: NetName=NetC8_Cap_p2 Pin=LDO1-Vout
+Added Net: Name=NetC8_Cap_p2
+Added Pin To Net: NetName=NetC9_Cap_p2 Pin=C9-Cap_p2
+Added Pin To Net: NetName=NetC9_Cap_p2 Pin=LDO1-Vin
+Added Pin To Net: NetName=NetC9_Cap_p2 Pin=LDO1-Vin
+Added Net: Name=NetC9_Cap_p2
+Added Pin To Net: NetName=NetLED1_Anode Pin=LED1-Anode
+Added Pin To Net: NetName=NetLED1_Anode Pin=R2-Res_p2
+Added Net: Name=NetLED1_Anode
+Added Pin To Net: NetName=OSC1 Pin=C6-Cap_p2
+Added Pin To Net: NetName=OSC1 Pin=R3-Res_p1
+Added Pin To Net: NetName=OSC1 Pin=U1-9
+Added Pin To Net: NetName=OSC1 Pin=X1-xTal_0
+Added Net: Name=OSC1
+Added Pin To Net: NetName=OSC2 Pin=C7-Cap_p2
+Added Pin To Net: NetName=OSC2 Pin=R3-Res_p2
+Added Pin To Net: NetName=OSC2 Pin=U1-10
+Added Pin To Net: NetName=OSC2 Pin=X1-xTal_1
+Added Net: Name=OSC2
+Added Pin To Net: NetName=PGEC2 Pin=U1-12
+Added Net: Name=PGEC2
+Added Pin To Net: NetName=PGED2 Pin=U1-11
+Added Net: Name=PGED2
+Added Pin To Net: NetName=PWM1 Pin=R2-Res_p1
+Added Pin To Net: NetName=PWM1 Pin=U1-26
+Added Net: Name=PWM1
+Added Pin To Net: NetName=SCL Pin=CONN1-2
+Added Pin To Net: NetName=SCL Pin=CONN2-2
+Added Pin To Net: NetName=SCL Pin=CONN3-2
+Added Pin To Net: NetName=SCL Pin=U1-15
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=CONN1-1
+Added Pin To Net: NetName=SDA Pin=CONN2-1
+Added Pin To Net: NetName=SDA Pin=CONN3-1
+Added Pin To Net: NetName=SDA Pin=U1-14
+Added Net: Name=SDA
+Added Pin To Net: NetName=VCAP Pin=C3-Cap_p1
+Added Pin To Net: NetName=VCAP Pin=U1-20
+Added Net: Name=VCAP
+Added Class: Name=ARMBAND
+Added Room: Name=ARMBAND

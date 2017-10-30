@@ -1,0 +1,193 @@
+Added Component: Designator=CONN5(10Pin_1mmpitch_FFC_FCP_ZIF)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R4(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R5(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R6(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R7(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R8(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R9(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R10(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R11(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R12(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R13(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R14(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R15(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R16(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R17(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R18(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=R19(Resistor_1608)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "Vishay"; VariantName = "[No Variations]"
+Added Component: Designator=SFH1(SFH_SENSOR_34x30)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "OSram"; VariantName = "[No Variations]"
+Added Component: Designator=SFH2(SFH_SENSOR_34x30)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "OSram"; VariantName = "[No Variations]"
+Added Component: Designator=SFH3(SFH_SENSOR_34x30)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "OSram"; VariantName = "[No Variations]"
+Added Component: Designator=SFH4(SFH_SENSOR_34x30)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "OSram"; VariantName = "[No Variations]"
+Added Component: Designator=SFH5(SFH_SENSOR_34x30)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "OSram"; VariantName = "[No Variations]"
+Added Component: Designator=SFH6(SFH_SENSOR_34x30)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "OSram"; VariantName = "[No Variations]"
+Added Component: Designator=SFH7(SFH_SENSOR_34x30)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "OSram"; VariantName = "[No Variations]"
+Added Component: Designator=SFH8(SFH_SENSOR_34x30)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manifacturer"; Value = "OSram"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3V3 Pin=CONN5-9
+Added Pin To Net: NetName=3V3 Pin=R4-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R5-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R6-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R7-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R8-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R9-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R10-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R11-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R12-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R13-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R14-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R15-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R16-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R17-Res_p1
+Added Pin To Net: NetName=3V3 Pin=R19-Res_p1
+Added Net: Name=3V3
+Added Pin To Net: NetName=GND Pin=CONN5-10
+Added Pin To Net: NetName=GND Pin=CONN5-GND
+Added Pin To Net: NetName=GND Pin=CONN5-GND
+Added Pin To Net: NetName=GND Pin=SFH1-LED_Cathode
+Added Pin To Net: NetName=GND Pin=SFH1-PhT_Emitter
+Added Pin To Net: NetName=GND Pin=SFH2-LED_Cathode
+Added Pin To Net: NetName=GND Pin=SFH2-PhT_Emitter
+Added Pin To Net: NetName=GND Pin=SFH3-LED_Cathode
+Added Pin To Net: NetName=GND Pin=SFH3-PhT_Emitter
+Added Pin To Net: NetName=GND Pin=SFH4-LED_Cathode
+Added Pin To Net: NetName=GND Pin=SFH4-PhT_Emitter
+Added Pin To Net: NetName=GND Pin=SFH5-LED_Cathode
+Added Pin To Net: NetName=GND Pin=SFH5-PhT_Emitter
+Added Pin To Net: NetName=GND Pin=SFH6-LED_Cathode
+Added Pin To Net: NetName=GND Pin=SFH6-PhT_Emitter
+Added Pin To Net: NetName=GND Pin=SFH7-LED_Cathode
+Added Pin To Net: NetName=GND Pin=SFH7-PhT_Emitter
+Added Pin To Net: NetName=GND Pin=SFH8-LED_Cathode
+Added Pin To Net: NetName=GND Pin=SFH8-PhT_Emitter
+Added Net: Name=GND
+Added Pin To Net: NetName=NetR4_Res_p2 Pin=R4-Res_p2
+Added Pin To Net: NetName=NetR4_Res_p2 Pin=SFH1-LED_Anode
+Added Net: Name=NetR4_Res_p2
+Added Pin To Net: NetName=NetR6_Res_p2 Pin=R6-Res_p2
+Added Pin To Net: NetName=NetR6_Res_p2 Pin=SFH2-LED_Anode
+Added Net: Name=NetR6_Res_p2
+Added Pin To Net: NetName=NetR8_Res_p2 Pin=R8-Res_p2
+Added Pin To Net: NetName=NetR8_Res_p2 Pin=SFH3-LED_Anode
+Added Net: Name=NetR8_Res_p2
+Added Pin To Net: NetName=NetR10_Res_p2 Pin=R10-Res_p2
+Added Pin To Net: NetName=NetR10_Res_p2 Pin=SFH4-LED_Anode
+Added Net: Name=NetR10_Res_p2
+Added Pin To Net: NetName=NetR12_Res_p2 Pin=R12-Res_p2
+Added Pin To Net: NetName=NetR12_Res_p2 Pin=SFH5-LED_Anode
+Added Net: Name=NetR12_Res_p2
+Added Pin To Net: NetName=NetR14_Res_p2 Pin=R14-Res_p2
+Added Pin To Net: NetName=NetR14_Res_p2 Pin=SFH6-LED_Anode
+Added Net: Name=NetR14_Res_p2
+Added Pin To Net: NetName=NetR16_Res_p2 Pin=R16-Res_p2
+Added Pin To Net: NetName=NetR16_Res_p2 Pin=SFH7-LED_Anode
+Added Net: Name=NetR16_Res_p2
+Added Pin To Net: NetName=NetR18_Res_p2 Pin=R18-Res_p2
+Added Pin To Net: NetName=NetR18_Res_p2 Pin=SFH8-LED_Anode
+Added Net: Name=NetR18_Res_p2
+Added Pin To Net: NetName=S0 Pin=CONN5-1
+Added Pin To Net: NetName=S0 Pin=R13-Res_p2
+Added Pin To Net: NetName=S0 Pin=SFH5-PhT_Collector
+Added Net: Name=S0
+Added Pin To Net: NetName=S1 Pin=CONN5-2
+Added Pin To Net: NetName=S1 Pin=R5-Res_p2
+Added Pin To Net: NetName=S1 Pin=SFH1-PhT_Collector
+Added Net: Name=S1
+Added Pin To Net: NetName=S2 Pin=CONN5-3
+Added Pin To Net: NetName=S2 Pin=R15-Res_p2
+Added Pin To Net: NetName=S2 Pin=SFH6-PhT_Collector
+Added Net: Name=S2
+Added Pin To Net: NetName=S3 Pin=CONN5-4
+Added Pin To Net: NetName=S3 Pin=R7-Res_p2
+Added Pin To Net: NetName=S3 Pin=SFH2-PhT_Collector
+Added Net: Name=S3
+Added Pin To Net: NetName=S4 Pin=CONN5-5
+Added Pin To Net: NetName=S4 Pin=R17-Res_p2
+Added Pin To Net: NetName=S4 Pin=SFH7-PhT_Collector
+Added Net: Name=S4
+Added Pin To Net: NetName=S5 Pin=CONN5-6
+Added Pin To Net: NetName=S5 Pin=R9-Res_p2
+Added Pin To Net: NetName=S5 Pin=SFH3-PhT_Collector
+Added Net: Name=S5
+Added Pin To Net: NetName=S6 Pin=CONN5-7
+Added Pin To Net: NetName=S6 Pin=R19-Res_p2
+Added Pin To Net: NetName=S6 Pin=SFH8-PhT_Collector
+Added Net: Name=S6
+Added Pin To Net: NetName=S7 Pin=CONN5-8
+Added Pin To Net: NetName=S7 Pin=R11-Res_p2
+Added Pin To Net: NetName=S7 Pin=SFH4-PhT_Collector
+Added Net: Name=S7
+Added Member To Class: ClassName=FlexiblePart Member=Component CONN5 10_pin_connector
+Added Member To Class: ClassName=FlexiblePart Member=Component R4 1k
+Added Member To Class: ClassName=FlexiblePart Member=Component R5 100
+Added Member To Class: ClassName=FlexiblePart Member=Component R6 1k
+Added Member To Class: ClassName=FlexiblePart Member=Component R7 100
+Added Member To Class: ClassName=FlexiblePart Member=Component R8 1k
+Added Member To Class: ClassName=FlexiblePart Member=Component R9 100
+Added Member To Class: ClassName=FlexiblePart Member=Component R10 1k
+Added Member To Class: ClassName=FlexiblePart Member=Component R11 100
+Added Member To Class: ClassName=FlexiblePart Member=Component R12 1k
+Added Member To Class: ClassName=FlexiblePart Member=Component R13 100
+Added Member To Class: ClassName=FlexiblePart Member=Component R14 1k
+Added Member To Class: ClassName=FlexiblePart Member=Component R15 100
+Added Member To Class: ClassName=FlexiblePart Member=Component R16 1k
+Added Member To Class: ClassName=FlexiblePart Member=Component R17 100
+Added Member To Class: ClassName=FlexiblePart Member=Component R18 1k
+Added Member To Class: ClassName=FlexiblePart Member=Component R19 100
+Added Member To Class: ClassName=FlexiblePart Member=Component SFH1 SFH 7250
+Added Member To Class: ClassName=FlexiblePart Member=Component SFH2 SFH 7250
+Added Member To Class: ClassName=FlexiblePart Member=Component SFH3 SFH 7250
+Added Member To Class: ClassName=FlexiblePart Member=Component SFH4 SFH 7250
+Added Member To Class: ClassName=FlexiblePart Member=Component SFH5 SFH 7250
+Added Member To Class: ClassName=FlexiblePart Member=Component SFH6 SFH 7250
+Added Member To Class: ClassName=FlexiblePart Member=Component SFH7 SFH 7250
+Added Member To Class: ClassName=FlexiblePart Member=Component SFH8 SFH 7250
+Added Room: Name=FlexiblePart

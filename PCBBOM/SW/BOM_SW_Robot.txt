@@ -1,0 +1,9 @@
+AZDelivery camera Raspberry Pi 	x1
+Tastiera USB 					x1
+
+
+Possibile guida:
+	Using only arduino pins
+	https://hackaday.com/2012/05/04/reaching-out-to-a-touch-screen-with-a-microcontroller/
+	Using a relay:
+	https://www.youtube.com/watch?v=8hlQ0MiowN8

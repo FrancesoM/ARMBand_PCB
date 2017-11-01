@@ -1,0 +1,28 @@
+- FTDY UART Bridge		x5
+- NUCLEO Board			x03
+- dsPIC33				x10
+- Crystal 8MHz		    x10		°
+- C Crystal 30pF		x30 	°
+- C Decoupling 100nF	x20		°
+- Optical Sensors		x50
+- R 100 Ohm 					°
+		*Phototrans		x100	°
+		*Vdd ICSP		x20		°
+- R 1k Ohm 						°
+		*Diode			x100	°
+		*Decouple		x20		°
+- R 1M Ogm (Crystal)	x20		°
+- Diode (Protect MCLR)	x20		°
+- Voltage Regulator		x10
+- C 1uF (LDO) 			x25		°
+- LED Cyan				x10		°
+- Connectors FFC/FPC (1mm Pitch)
+		*10 Pins 		x20	(8 overhead)
+		* 4 Pins		x20 (8 overhead)
+- Wires FFC (1mm Pitch)
+		*10 Pins		x10 (4 overhead)
+		*4 Pins			x8  (3 overhead)
+- Connectors Molex Pico EzMate
+		*Crimp terminal x100
+		*PCB Header		x5 (4 overhead)
+		*Crimp Housing	x5 (4 overhead)

@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=PGEC2 Pin=U1-11
+Added Pin To Net: NetName=PGED2 Pin=U1-11
+Added Net: Name=PGED2

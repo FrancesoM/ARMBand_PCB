@@ -16,6 +16,7 @@
 #include <stdint.h>          /* For uint16_t definition                       */
 #include <stdbool.h>         /* For true/false definition                     */
 #include "user.h"            /* variables/params used by user.c               */
+#include "dsp.h"
 
 /******************************************************************************/
 /* User Functions                                                             */

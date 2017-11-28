@@ -47,3 +47,28 @@ void InitApp(void)
  * digital circuits, as well as deciding the clock, setting the 
  * pins as analog and inputs.
  */
+
+void initADC(void)
+{
+    /*Set channels as input by selecting both the TRISA and ANSEL*/
+    
+    TRISAbits.TRISA0 = 1;
+    TRISAbits.TRISA1 = 1;
+    TRISAbits.TRISA2 = 1;
+    TRISBbits.TRISB0 = 1;
+    TRISBbits.TRISB5 = 1;
+    TRISBbits.TRISB6 = 1;
+    TRISBbits.TRISB7 = 1;
+    TRISBbits.TRISB9 = 1;
+    
+    
+    ANSELAbits.ANSA0 = 1;
+    ANSELAbits.ANSA1 = 1;
+    ANSELAbits.ANSA2 = 1;
+    ANSELBbits.ANSB0 = 1;
+    ANSELBbits.ANSB5 = 1;
+    ANSELBbits.ANSB6 = 1;
+    ANSELBbits.ANSB7 = 1;
+    ANSELBbits.ANSB9 = 1;
+    
+}

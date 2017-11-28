@@ -40,9 +40,10 @@ int16_t main(void)
     InitApp();
 
     /* TODO <INSERT USER APPLICATION CODE HERE> */
-
+    int temp = LATAbits.LATA3;
     while(1)
     {
-
+        PORTAbits.RA3 = LATAbits.LATA3 ^ 1;
+        __delay_ms(1000);
     }
 }

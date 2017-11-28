@@ -2,11 +2,10 @@
 /* System Level #define Macros                                                */
 /******************************************************************************/
 
-/* TODO Define system operating frequency */
-
 /* Microcontroller MIPs (FCY) */
-#define SYS_FREQ        7370000L
+#define SYS_FREQ        64000000L
 #define FCY             SYS_FREQ/2
+#include <libpic30.h>
 
 /******************************************************************************/
 /* System Function Prototypes                                                 */

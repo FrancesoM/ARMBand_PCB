@@ -17,6 +17,7 @@
 #include <stdbool.h>         /* For true/false definition                     */
 #include "user.h"            /* variables/params used by user.c               */
 #include "dsp.h"
+#include "system.h"
 
 /******************************************************************************/
 /* User Functions                                                             */
@@ -27,8 +28,22 @@
 void InitApp(void)
 {
     /* TODO Initialize User Ports/Peripherals/Project here */
-
+    TRISAbits.TRISA3 = 0; //Pin as output
+    PORTAbits.RA3 = 0; //Pin low
+    
     /* Setup analog functionality and port direction */
 
     /* Initialize peripherals */
 }
+
+/* For this application we will power up all the ADC modules.
+ * both the 4 dedicated ADC cores and the Shared ones. 
+ * The mapping is: 
+ * AN0,1,2,3 -> Dedicated for each one
+ * AN4,19,20,21 -> Shared 
+ */
+
+/* The Initialization consists in giving power to the analog and
+ * digital circuits, as well as deciding the clock, setting the 
+ * pins as analog and inputs.
+ */

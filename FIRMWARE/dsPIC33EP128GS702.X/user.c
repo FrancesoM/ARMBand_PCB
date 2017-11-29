@@ -35,6 +35,9 @@ void InitApp(void)
     
     /* Initialize peripherals */
     InitADC();
+    I2C2CONLbits.I2CEN = 1;  //Enable i2c
+    INTCON2bits.GIE = 1;     //Enable global interrupt
+    IEC3bits.SI2C2IE = 1;    //Enable slave interrupts
 }
 
 /* For this application we will power up all the ADC modules.
@@ -43,12 +46,6 @@ void InitApp(void)
  * AN0,1,2,3 -> Dedicated for each one
  * AN4,19,20,21 -> Shared 
  */
-
-/* The Initialization consists in giving power to the analog and
- * digital circuits, as well as deciding the clock, setting the 
- * pins as analog and inputs.
- */
-
 void InitADC(void)
 {
     /*Set channels as input by selecting both the TRISA and ANSEL*/

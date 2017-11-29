@@ -38,12 +38,13 @@ int16_t main(void)
 
     /* Initialize IO ports and peripherals */
     InitApp();
-
-    /* TODO <INSERT USER APPLICATION CODE HERE> */
-    int temp = LATAbits.LATA3;
+    
+    unsigned int photoreflectors[8];
+    
     while(1)
     {
         PORTAbits.RA3 = LATAbits.LATA3 ^ 1;
+        SwipeSampling(photoreflectors);
         __delay_ms(1000);
     }
 }

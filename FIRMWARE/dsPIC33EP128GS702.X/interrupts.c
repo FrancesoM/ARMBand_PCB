@@ -124,3 +124,32 @@
 /******************************************************************************/
 
 /* TODO Add interrupt routine code here. */
+void __attribute__((interrupt,auto_psv)) _SI2C2Interrupt(void)
+{
+    unsigned int temp; 
+    
+    if(I2C2STATbits.R_W) //If master wants to read
+    {
+        temp = I2C2RCV; //dummy read to free the incoming buffer
+        
+        /* Whether the last is an address or a byte, the slave must send.
+         + it writes only if the last bit sent was an ack
+         * we can see that by inspecting the ACKSTAT bit. */
+        if(!(I2C2STATbits.ACKSTAT) )
+        {
+            I2C2TRN = 0xfa; //Send dummy value
+        }
+        
+    }
+    else //If master wants to write
+    {
+        temp = I2C2RCV; //Read whatever has come 
+        if( I2C2STATbits.D_A) //If it was a data
+        {
+            //Handle the received byte, which is inside temp.
+        }
+    }
+    
+    I2C2CONLbits.SCLREL = 1;    //Release the clock
+    IFS3bits.SI2C2IF = 0;       //Reset interrupt flag
+}

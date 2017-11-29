@@ -35,9 +35,10 @@ void InitApp(void)
     
     /* Initialize peripherals */
     InitADC();
-    I2C2CONLbits.I2CEN = 1;  //Enable i2c
-    INTCON2bits.GIE = 1;     //Enable global interrupt
-    IEC3bits.SI2C2IE = 1;    //Enable slave interrupts
+    I2C2CONLbits.I2CEN = 1;     //Enable I2C_2
+    INTCON2bits.GIE = 1;        //Enable global interrupt
+    IEC3bits.SI2C2IE = 1;       //Enable slave I2C_2 interrupts
+    I2C2CONLbits.STREN = 1;     //Enable clock stretching
 }
 
 /* For this application we will power up all the ADC modules.

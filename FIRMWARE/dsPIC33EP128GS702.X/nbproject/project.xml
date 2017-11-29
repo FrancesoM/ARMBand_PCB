@@ -13,5 +13,10 @@
             <asminc-extensions/>
             <make-dep-projects/>
         </data>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>Cofigure</word>
+            <word>config</word>
+            <word>Tadcore</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>

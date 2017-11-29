@@ -1,6 +1,0 @@
-Added Pin To Net: NetName=GND Pin=C8-Cap_p1
-Added Pin To Net: NetName=GND Pin=C9-Cap_p1
-Added Pin To Net: NetName=5V Pin=LDO1-Vin
-Added Pin To Net: NetName=5V Pin=LDO1-Vin
-Added Pin To Net: NetName=3V3 Pin=LDO1-Vout
-Added Member To Class: ClassName=ARMBAND Member=Component U1 DSPIC33EP128MC202-I/SO

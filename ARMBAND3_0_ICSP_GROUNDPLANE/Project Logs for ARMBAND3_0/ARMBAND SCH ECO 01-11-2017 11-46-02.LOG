@@ -1,3 +1,0 @@
-Remove Pin=U1-11 From Net=PGEC2
-Change Pin Designator/Name:  Old Designator=C8-Cap_p2 Old Name=Cap_p2 New Designator =Cap_p1 New Name=Cap_p1
-Change Pin Designator/Name:  Old Designator=C9-Cap_p2 Old Name=Cap_p2 New Designator =Cap_p1 New Name=Cap_p1

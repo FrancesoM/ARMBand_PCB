@@ -29,6 +29,10 @@
 /******************************************************************************/
 /* Main Program                                                               */
 /******************************************************************************/
+unsigned int photoreflectors[8]; // = {0xff00,0xdd22,0xbb44,0x9966,0x7788,0x55aa,0x33cc,0x11ee};
+int counter = 0;
+int lsb = 0;
+int sample=0;
 
 int16_t main(void)
 {
@@ -38,13 +42,16 @@ int16_t main(void)
 
     /* Initialize IO ports and peripherals */
     InitApp();
-    
-    unsigned int photoreflectors[8];
+      
     
     while(1)
     {
-        PORTAbits.RA3 = LATAbits.LATA3 ^ 1;
-        SwipeSampling(photoreflectors);
+        //PORTAbits.RA3 = LATAbits.LATA3 ^ 1;
+        if(sample)
+        {
+            SwipeSampling(photoreflectors);
+            sample = 0;
+        }
         __delay_ms(1000);
     }
 }

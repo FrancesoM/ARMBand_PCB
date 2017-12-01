@@ -123,6 +123,11 @@
 /* Interrupt Routines                                                         */
 /******************************************************************************/
 
+extern unsigned int photoreflectors[8];
+extern int counter;
+extern int lsb;
+extern int sample;
+
 /* TODO Add interrupt routine code here. */
 void __attribute__((interrupt,auto_psv)) _SI2C2Interrupt(void)
 {
@@ -135,14 +140,40 @@ void __attribute__((interrupt,auto_psv)) _SI2C2Interrupt(void)
         /* Whether the last is an address or a byte, the slave must send.
          + it writes only if the last bit sent was an ack
          * we can see that by inspecting the ACKSTAT bit. */
-        if(!(I2C2STATbits.ACKSTAT) )
+        if(I2C2STATbits.D_A) //Last was byte
         {
-            I2C2TRN = 0xfa; //Send dummy value
+            if(!(I2C2STATbits.ACKSTAT) )
+            {
+
+                if(lsb)
+                {
+                    I2C2TRN = photoreflectors[counter]; //Send dummy value
+                    lsb=0;
+                    
+                }else
+                {                    
+                    I2C2TRN = photoreflectors[counter]>>8; //Send dummy value
+                    counter++;
+                    lsb=1;
+                    if(counter==7)
+                    {
+                        sample=1;
+                    }
+                }
+                
+            }
+        }
+        if(!(I2C2STATbits.D_A)) //Last was address
+        {
+            counter = 0;
+            I2C2TRN = photoreflectors[counter]; //Send dummy value
+            lsb = 0;
         }
         
     }
     else //If master wants to write
     {
+        //PORTAbits.RA3 = 1;
         temp = I2C2RCV; //Read whatever has come 
         if( I2C2STATbits.D_A) //If it was a data
         {

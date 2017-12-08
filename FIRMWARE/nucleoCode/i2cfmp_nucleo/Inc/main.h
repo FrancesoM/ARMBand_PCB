@@ -78,8 +78,26 @@
 #define SWO_GPIO_Port GPIOB
 #define LD2_Pin GPIO_PIN_7
 #define LD2_GPIO_Port GPIOB
+#define LD1_Pin GPIO_PIN_0
+#define LD1_GPIO_Port GPIOB
+#define CHECK_PIN_1 GPIO_PIN_7
+#define CHECK_PIN_2 GPIO_PIN_5
+#define CHECK_PIN_3 GPIO_PIN_6
+#define CHECK_PORT GPIOD
 
 /* USER CODE BEGIN Private defines */
+
+#define N_CHANNELS 8
+#define N_BOARDS 4
+#define N_DATA N_CHANNELS*N_BOARDS
+#define ADC_BYTES 2
+#define SIZE_IN_BYTES N_CHANNELS*ADC_BYTES
+#define SLAVE_1_ADDRESS 0x02
+#define SLAVE_2_ADDRESS 0x06
+#define SLAVE_3_ADDRESS 0x0E
+#define SLAVE_4_ADDRESS 0x1E
+#define SAMPLE_FOR_AVERAGE 64
+#define HALF_DYNAMIC (1<<11)
 
 /* USER CODE END Private defines */
 

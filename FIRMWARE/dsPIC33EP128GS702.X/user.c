@@ -39,7 +39,7 @@ void InitApp(void)
     INTCON2bits.GIE = 1;        //Enable global interrupt
     IEC3bits.SI2C2IE = 1;       //Enable slave I2C_2 interrupts
     I2C2CONLbits.STREN = 1;     //Enable clock stretching
-    I2C2ADD = 0b0000101;             //Own address
+    I2C2ADD = SLAVE_ADDRESS;             //Own address
 }
 
 /* For this application we will power up all the ADC modules.

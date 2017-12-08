@@ -19,6 +19,7 @@
 
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp              */
+#include <math.h>
 
 /******************************************************************************/
 /* Global Variable Declaration                                                */
@@ -29,10 +30,14 @@
 /******************************************************************************/
 /* Main Program                                                               */
 /******************************************************************************/
-unsigned int photoreflectors[8]; // = {0xff00,0xdd22,0xbb44,0x9966,0x7788,0x55aa,0x33cc,0x11ee};
+unsigned int photoreflectors[8];// = {0xff00,0xdd22,0xbb44,0x9966,0x7788,0x55aa,0x33cc,0x11ee};
 int counter = 0;
 int lsb = 0;
 int sample=0;
+float deltaT = 0.1f;
+float pi = 3.1415f;
+float omega = 2500.0f; // 10rad/sec
+float t=0;
 
 int16_t main(void)
 {
@@ -50,8 +55,9 @@ int16_t main(void)
         if(sample)
         {
             SwipeSampling(photoreflectors);
+            //t += deltaT;
             sample = 0;
         }
-        __delay_ms(1000);
+        //__delay_ms(100);
     }
 }

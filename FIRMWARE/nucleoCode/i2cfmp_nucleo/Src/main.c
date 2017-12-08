@@ -43,12 +43,10 @@
 
 /* USER CODE END Includes */
 
-#define MERGE_BYTES(lsb,msb) (uint16_t)( ( ( (uint16_t)msb)<<8) | lsb ); 
-
 /* Private variables ---------------------------------------------------------*/
 FMPI2C_HandleTypeDef hfmpi2c1;
 
-UART_HandleTypeDef huart4;
+UART_HandleTypeDef huart6;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -57,9 +55,9 @@ UART_HandleTypeDef huart4;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
+static void MX_GPIO_Init(void); 
 static void MX_FMPI2C1_Init(void);
-static void MX_UART4_Init(void);
+static void MX_USART6_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -96,41 +94,114 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_FMPI2C1_Init();
-  MX_UART4_Init();
+  MX_USART6_UART_Init();
 
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
-  uint8_t buffer[16];
-	uint16_t data[8];
+  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	HAL_GPIO_WritePin(GPIOB,LD3_Pin,GPIO_PIN_SET);
+	struct packet{
+		uint8_t start[2];
+		uint16_t buffer[N_DATA];
+		uint8_t end[3];
+	};
+	
+	struct packet serial_packet;
+	serial_packet.start[0] = 0x00;
+	serial_packet.start[1] = 0x00;
+	
+	serial_packet.end[0] = 0x21;
+	serial_packet.end[1] = 0x21;
+	serial_packet.end[2] = 0x21;
+	
+	int flag_average_done = 0;
+	int index_for_average = 0;
+	int average_grater_than_half_dynamic[N_DATA];
+	uint16_t average[N_DATA];
+	uint32_t buffer_for_average[N_DATA];
+	
+	for(int i = 0; i < N_DATA; i++)
+	{
+		buffer_for_average[i] = 0;
+	}
+	
+	int flag = 0;
+	
+  /* USER CODE BEGIN WHILE */
+	HAL_GPIO_WritePin(GPIOB,LD3_Pin|LD2_Pin|LD1_Pin,GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_7,GPIO_PIN_SET);
   while (1)
   {
-  /* USER CODE END WHILE */
-		if(HAL_FMPI2C_Master_Receive(&hfmpi2c1,0x0A,buffer,16,10) == HAL_OK)
-		{
-			HAL_GPIO_WritePin(GPIOB,LD2_Pin,GPIO_PIN_SET);
-			for(int i = 0;i<8;i++)
-			{
-				data[i] = MERGE_BYTES(buffer[2*i],buffer[2*i+1])
-			}
+  /* Receive data from i2c */
+		
+		/*It should work thanks to little endiannes */
+		//Can be done with a loop, unrolled made possible by the small number of slaves
+	  //Receive from all the i2c slaves (boards with photoreflectors and IMUs)
+		while(HAL_FMPI2C_Master_Receive(&hfmpi2c1,SLAVE_1_ADDRESS,(uint8_t*)(serial_packet.buffer),SIZE_IN_BYTES,10) == HAL_BUSY){};
+		HAL_GPIO_WritePin(GPIOB,LD1_Pin,GPIO_PIN_SET);
 			
-		}
-		else 
+		while(HAL_FMPI2C_Master_Receive(&hfmpi2c1,SLAVE_2_ADDRESS,(uint8_t*)(serial_packet.buffer+N_CHANNELS),SIZE_IN_BYTES,10) == HAL_BUSY){};
+		HAL_GPIO_WritePin(GPIOB,LD2_Pin,GPIO_PIN_SET);
+	
+		while(HAL_FMPI2C_Master_Receive(&hfmpi2c1,SLAVE_3_ADDRESS,(uint8_t*)(serial_packet.buffer+2*N_CHANNELS),SIZE_IN_BYTES,10) == HAL_BUSY){};
+		HAL_GPIO_WritePin(GPIOB,LD3_Pin,GPIO_PIN_SET);
+		
+		while(HAL_FMPI2C_Master_Receive(&hfmpi2c1,SLAVE_4_ADDRESS,(uint8_t*)(serial_packet.buffer+3*N_CHANNELS),SIZE_IN_BYTES,10) == HAL_BUSY){};
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_7,GPIO_PIN_SET);
+
+							
+		
+		//Sample or, if completed, send over the UART but not before having removed the mean
+		if(flag_average_done)
 		{
-			HAL_GPIO_WritePin(GPIOB,LD2_Pin,GPIO_PIN_RESET);
+			
+			for(int i = 0; i < N_DATA; i++)
+			{
+				/*Remove the mean and center the data*/
+				if(average_grater_than_half_dynamic[i])
+				{
+					serial_packet.buffer[i] =  (serial_packet.buffer[i] - average[i])+ HALF_DYNAMIC;
+				}
+				else
+				{
+					serial_packet.buffer[i] =  (serial_packet.buffer[i] + HALF_DYNAMIC) - average[i];
+				}
+				
+			}
+			/* Send data over serial */
+			if(HAL_UART_Transmit(&huart6,(uint8_t*)&serial_packet,sizeof(serial_packet),25) == HAL_OK)
+			{
+				HAL_GPIO_WritePin(GPIOB,LD3_Pin,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOB,LD1_Pin,GPIO_PIN_RESET);
+			}
 		}
-  {
-  /* USER CODE END WHILE */
-
-  /* USER CODE BEGIN 3 */
-
-  }
+		else
+		{
+			for(int i=0; i<N_DATA; i++)
+			{
+				buffer_for_average[i]+= (uint32_t)serial_packet.buffer[i];					
+			}
+			index_for_average++;
+			if(index_for_average == (SAMPLE_FOR_AVERAGE -1) )
+			{
+				for(int i = 0; i < N_DATA; i++)
+				{
+					average[i] = buffer_for_average[i]>>6; //SAMPLE_FOR_AVERAGE = 2^6;
+					flag_average_done = 1;
+					if(average[i] > HALF_DYNAMIC) average_grater_than_half_dynamic[i] = 1;
+					else average_grater_than_half_dynamic[i] = 0;
+				}
+			}
+		}
+		
+	//for(int j=0;j<100000;j++);  //Delay
   /* USER CODE END 3 */
-
+	}
+		
 }
+
 
 /** System Clock Configuration
 */
@@ -230,19 +301,19 @@ static void MX_FMPI2C1_Init(void)
 
 }
 
-/* UART4 init function */
-static void MX_UART4_Init(void)
+/* USART6 init function */
+static void MX_USART6_UART_Init(void)
 {
 
-  huart4.Instance = UART4;
-  huart4.Init.BaudRate = 115200;
-  huart4.Init.WordLength = UART_WORDLENGTH_8B;
-  huart4.Init.StopBits = UART_STOPBITS_1;
-  huart4.Init.Parity = UART_PARITY_NONE;
-  huart4.Init.Mode = UART_MODE_TX_RX;
-  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart4.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart4) != HAL_OK)
+  huart6.Instance = USART6;
+  huart6.Init.BaudRate = 1000000; //921600; //115200;//921600; //115200;
+  huart6.Init.WordLength = UART_WORDLENGTH_8B;
+  huart6.Init.StopBits = UART_STOPBITS_1;
+  huart6.Init.Parity = UART_PARITY_NONE;
+  huart6.Init.Mode = UART_MODE_TX_RX;
+  huart6.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart6.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart6) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
@@ -270,15 +341,16 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LD3_Pin|LD2_Pin, GPIO_PIN_RESET);
-
+  HAL_GPIO_WritePin(GPIOB, LD3_Pin|LD2_Pin|LD1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(CHECK_PORT, CHECK_PIN_1|CHECK_PIN_2|CHECK_PIN_3, GPIO_PIN_RESET);
+	
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(USB_PowerSwitchOn_GPIO_Port, USB_PowerSwitchOn_Pin, GPIO_PIN_RESET);
 
@@ -289,11 +361,18 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(USER_Btn_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LD3_Pin LD2_Pin */
-  GPIO_InitStruct.Pin = LD3_Pin|LD2_Pin;
+  GPIO_InitStruct.Pin = LD3_Pin|LD2_Pin|LD1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : Check Pin */
+  GPIO_InitStruct.Pin = CHECK_PIN_1|CHECK_PIN_2|CHECK_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(CHECK_PORT, &GPIO_InitStruct);
 
   /*Configure GPIO pins : STLK_RX_Pin STLK_TX_Pin */
   GPIO_InitStruct.Pin = STLK_RX_Pin|STLK_TX_Pin;

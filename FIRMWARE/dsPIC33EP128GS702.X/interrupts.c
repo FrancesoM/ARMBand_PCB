@@ -123,18 +123,27 @@
 /* Interrupt Routines                                                         */
 /******************************************************************************/
 
+#include <math.h>
+
 extern unsigned int photoreflectors[8];
 extern int counter;
 extern int lsb;
 extern int sample;
 
+extern float deltaT;// = 0.1f;
+extern float pi;// = 3.1415f;
+extern float omega;
+extern float t;
+
 /* TODO Add interrupt routine code here. */
 void __attribute__((interrupt,auto_psv)) _SI2C2Interrupt(void)
 {
-    unsigned int temp; 
+    unsigned int temp;
     
+    if(t > 100000.0f) t=0;
     if(I2C2STATbits.R_W) //If master wants to read
     {
+        PORTAbits.RA3 = 1;
         temp = I2C2RCV; //dummy read to free the incoming buffer
         
         /* Whether the last is an address or a byte, the slave must send.
@@ -147,15 +156,16 @@ void __attribute__((interrupt,auto_psv)) _SI2C2Interrupt(void)
 
                 if(lsb)
                 {
-                    I2C2TRN = photoreflectors[counter]; //Send dummy value
+                    I2C2TRN = (unsigned int)photoreflectors[counter];// 5000*cos(pi*omega*t)); //Send dummy value
                     lsb=0;
                     
                 }else
                 {                    
-                    I2C2TRN = photoreflectors[counter]>>8; //Send dummy value
+                    I2C2TRN = (unsigned int)photoreflectors[counter]>>8;// 5000*cos(pi*omega*t)))>>8; //Send dummy value
                     counter++;
+                    
                     lsb=1;
-                    if(counter==7)
+                    if(counter==3)
                     {
                         sample=1;
                     }
@@ -166,7 +176,7 @@ void __attribute__((interrupt,auto_psv)) _SI2C2Interrupt(void)
         if(!(I2C2STATbits.D_A)) //Last was address
         {
             counter = 0;
-            I2C2TRN = photoreflectors[counter]; //Send dummy value
+            I2C2TRN = (unsigned int)photoreflectors[counter];// 5000*cos(pi*omega*t)); //Send dummy value
             lsb = 0;
         }
         
@@ -181,6 +191,7 @@ void __attribute__((interrupt,auto_psv)) _SI2C2Interrupt(void)
         }
     }
     
+    PORTAbits.RA3 = 0;
     I2C2CONLbits.SCLREL = 1;    //Release the clock
     IFS3bits.SI2C2IF = 0;       //Reset interrupt flag
 }

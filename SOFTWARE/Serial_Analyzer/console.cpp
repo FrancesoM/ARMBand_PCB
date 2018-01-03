@@ -61,7 +61,7 @@ Console::Console(int n_ch, int y_min, int y_max, QCustomPlot *parent)
 
     for(int i = 0;i<n_channels;i++){
         this->addGraph();
-        this->graph(i)->setPen(QPen(this->colorVector[i]));
+        this->graph(i)->setPen(QPen(this->colorVector[i%8]));
     }
 
     this->xAxis->setRange(0,HISTORY);

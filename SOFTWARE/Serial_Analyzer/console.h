@@ -57,7 +57,7 @@
 
 #include <math.h>
 
-#define NCHANNEL 8
+//#define NCHANNEL 8*4
 #define HISTORY 50
 
 //Define here the channels used for recognition, if N_channel changes, remember to

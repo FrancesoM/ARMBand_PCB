@@ -133,9 +133,9 @@ void MainWindow::about()
 void MainWindow::readData()
 {
 
-    quint8 receivedAxis[16];
-    int packetSize = 16+5;
-    int nData = 8;  //x, y, z
+    quint8 receivedAxis[16*4]; //4 pic, each 8 sensors, each 2 bytes value
+    int packetSize = 16*4+5; //5 bytes overhead
+    int nData = 8*4;  //4 pics,  8 sensors
     QVector<float> yVec = QVector<float>(nData);
     QVector<uint16_t> temp = QVector<uint16_t>(nData);
 
@@ -184,6 +184,54 @@ void MainWindow::readData()
                   receivedAxis[13] = bytesQueue[offset+15];
                   receivedAxis[14] = bytesQueue[offset+16];
                   receivedAxis[15] = bytesQueue[offset+17];
+                  receivedAxis[16] = bytesQueue[offset+18];
+                  receivedAxis[17] = bytesQueue[offset+19];
+                  receivedAxis[18] = bytesQueue[offset+20];
+                  receivedAxis[19] = bytesQueue[offset+21];
+                  receivedAxis[20] = bytesQueue[offset+22];
+                  receivedAxis[21] = bytesQueue[offset+23];
+                  receivedAxis[22] = bytesQueue[offset+24];
+                  receivedAxis[23] = bytesQueue[offset+25];
+                  receivedAxis[24] = bytesQueue[offset+26];
+                  receivedAxis[25] = bytesQueue[offset+27];
+                  receivedAxis[26] = bytesQueue[offset+28];
+                  receivedAxis[27] = bytesQueue[offset+29];
+                  receivedAxis[28] = bytesQueue[offset+30];
+                  receivedAxis[29] = bytesQueue[offset+31];
+                  receivedAxis[30] = bytesQueue[offset+32];
+                  receivedAxis[31] = bytesQueue[offset+33];
+                  receivedAxis[32] = bytesQueue[offset+34];
+                  receivedAxis[33] = bytesQueue[offset+35];
+                  receivedAxis[34] = bytesQueue[offset+36];
+                  receivedAxis[35] = bytesQueue[offset+37];
+                  receivedAxis[36] = bytesQueue[offset+38];
+                  receivedAxis[37] = bytesQueue[offset+39];
+                  receivedAxis[38] = bytesQueue[offset+40];
+                  receivedAxis[39] = bytesQueue[offset+41];
+                  receivedAxis[40] = bytesQueue[offset+42];
+                  receivedAxis[41] = bytesQueue[offset+43];
+                  receivedAxis[42] = bytesQueue[offset+44];
+                  receivedAxis[43] = bytesQueue[offset+45];
+                  receivedAxis[44] = bytesQueue[offset+46];
+                  receivedAxis[45] = bytesQueue[offset+47];
+                  receivedAxis[46] = bytesQueue[offset+48];
+                  receivedAxis[47] = bytesQueue[offset+49];
+                  receivedAxis[48] = bytesQueue[offset+50];
+                  receivedAxis[49] = bytesQueue[offset+51];
+                  receivedAxis[50] = bytesQueue[offset+52];
+                  receivedAxis[51] = bytesQueue[offset+53];
+                  receivedAxis[52] = bytesQueue[offset+54];
+                  receivedAxis[53] = bytesQueue[offset+55];
+                  receivedAxis[54] = bytesQueue[offset+56];
+                  receivedAxis[55] = bytesQueue[offset+57];
+                  receivedAxis[56] = bytesQueue[offset+58];
+                  receivedAxis[57] = bytesQueue[offset+59];
+                  receivedAxis[58] = bytesQueue[offset+60];
+                  receivedAxis[59] = bytesQueue[offset+61];
+                  receivedAxis[60] = bytesQueue[offset+62];
+                  receivedAxis[61] = bytesQueue[offset+63];
+                  receivedAxis[62] = bytesQueue[offset+64];
+                  receivedAxis[63] = bytesQueue[offset+65];
 
                   for(int i = 0;i<nData*2;i++){
                       qDebug("%04x",receivedAxis[i]); // << receivedAxis[i];

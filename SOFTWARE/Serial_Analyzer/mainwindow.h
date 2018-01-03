@@ -62,8 +62,8 @@
 #include <QVector>
 #include <QFile>
 
-#define NCHANNEL 8
-#define NUM_AXES 8
+//#define NCHANNEL 8
+#define NUM_AXES 8*4
 #define UP_AXIS 3000
 #define DOWN_AXIS 1000
 //#define CHECK_FRAME(buf) ((buf[0] == 0x00) && (buf[5] == 0x21) && (buf[6] == 0x21) && (buf[7] == 0x21) )

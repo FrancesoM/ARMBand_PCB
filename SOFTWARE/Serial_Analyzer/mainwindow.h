@@ -61,9 +61,10 @@
 #include <QQueue>
 #include <QVector>
 #include <QFile>
+#include <QTextStream>
 
 //#define NCHANNEL 8
-#define NUM_AXES 8*4
+#define NUM_AXES 32
 #define UP_AXIS 3000
 #define DOWN_AXIS 1000
 //#define CHECK_FRAME(buf) ((buf[0] == 0x00) && (buf[5] == 0x21) && (buf[6] == 0x21) && (buf[7] == 0x21) )
@@ -102,6 +103,9 @@ private slots:
     void openGyro();
     void closeGyro();
 
+    void save_on();
+    void save_off();
+
     void handleError(QSerialPort::SerialPortError error);
 
     void broadcastTransformation();
@@ -120,11 +124,14 @@ private:
     void showStatusMessage(const QString &message);
 
     int flagGyro;
+    int flagSave;
 
     Ui::MainWindow *ui;
     QLabel *status;
     Console *console;
     Console *consoleGyro;
+    QFile *savedData;
+    QTextStream *out;
     SettingsDialog *settings;
     SettingsDialog *settingsGyro;
     QSerialPort *serial;

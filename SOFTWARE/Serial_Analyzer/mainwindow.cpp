@@ -16,6 +16,10 @@ MainWindow::MainWindow(QWidget *parent) :
     console = new Console(NUM_AXES,DOWN_AXIS,UP_AXIS);
     console->setEnabled(false);
 
+    ui->actionStop_Saving->setEnabled(false);
+    ui->actionStart_Saving->setEnabled(true);
+    this->flagSave = 0;
+
     consoleGyro = new Console(1,-180,180);
     consoleGyro->setEnabled(false);
 
@@ -28,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
     settingsGyro = new SettingsDialog("COM4","115200");
     flagGyro = 0;
 
-ui->actionConnect->setEnabled(true);
+    ui->actionConnect->setEnabled(true);
     ui->actionConnectGyro->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
     ui->actionDisconnectGyro->setEnabled(false);
@@ -248,10 +252,21 @@ void MainWindow::readData()
                     //yVec[i] = (float)*reinterpret_cast<quint16*>(&receivedAxis[2*i]);
                     temp[i] = (((uint16_t) receivedAxis[2*i+1])<<8) + receivedAxis[2*i];
                     yVec[i] = (float) (temp[i]);
-                    //qDebug() << yVec[i];
+                    if(this->flagSave)
+                    {
+                        if(i != nData-1) //Don't put the coma if last data
+                        {
+                            *out << temp[i] << ",";
+                        }else
+                        {
+                            *out << temp[i] << "\n";  //New line instead of coma
+                        }
+                    }
 
+                    //qDebug() << yVec[i];
                 }
                 console->putData(yVec);
+
                 qDebug() << yVec;
 
                 //Delete from the queue everything that has been used so far
@@ -323,6 +338,41 @@ void MainWindow::closeGyro()
     closeSerialPort(serialGyro,consoleGyro,"Gyro");
 }
 
+void MainWindow::save_on()
+{
+    this->flagSave = 1;
+    ui->actionStop_Saving->setEnabled(true);
+    ui->actionStart_Saving->setEnabled(false);
+    QString fname = ui->filename->text();
+    if(fname.length() < 2 )
+    {
+        fname = "default";
+    }
+
+    fname.append(".txt");
+
+    savedData = new QFile(fname);
+    if (!savedData->open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Error while opening file";
+        return;
+    }
+
+    out = new QTextStream(savedData);
+
+
+}
+
+void MainWindow::save_off()
+{
+    this->flagSave = 0;
+    ui->actionStop_Saving->setEnabled(false);
+    ui->actionStart_Saving->setEnabled(true);
+
+    savedData->close();
+    out->flush();
+}
+
 void MainWindow::handleError(QSerialPort::SerialPortError error)
 {
     if (error == QSerialPort::ResourceError) {
@@ -344,6 +394,9 @@ void MainWindow::initActionsConnections()
 
     connect(ui->actionConfigure, &QAction::triggered, settings, &SettingsDialog::show);
     connect(ui->actionConfigureGyro, &QAction::triggered, settingsGyro, &SettingsDialog::show);
+
+    connect(ui->actionStart_Saving, &QAction::triggered, this, &MainWindow::save_on);
+    connect(ui->actionStop_Saving, &QAction::triggered, this, &MainWindow::save_off);
 
     //connect(ui->actionClear, &QAction::triggered, console, &Console::clear);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::about);

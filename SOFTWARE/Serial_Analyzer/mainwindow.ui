@@ -22,6 +22,13 @@
       </item>
      </layout>
     </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLineEdit" name="filename"/>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -30,7 +37,7 @@
      <x>0</x>
      <y>0</y>
      <width>781</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuCalls">
@@ -51,7 +58,8 @@
     <addaction name="actionConfigure"/>
     <addaction name="actionConfigureGyro"/>
     <addaction name="actionClear"/>
-    <addaction name="actionTranslate"/>
+    <addaction name="actionStart_Saving"/>
+    <addaction name="actionStop_Saving"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -80,7 +88,8 @@
    <addaction name="actionConfigureGyro"/>
    <addaction name="separator"/>
    <addaction name="actionClear"/>
-   <addaction name="actionTranslate"/>
+   <addaction name="actionStart_Saving"/>
+   <addaction name="actionStop_Saving"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAbout">
@@ -198,13 +207,22 @@
     <string>Configure Gyro</string>
    </property>
   </action>
-  <action name="actionTranslate">
+  <action name="actionStart_Saving">
    <property name="icon">
     <iconset resource="terminal.qrc">
-     <normaloff>:/images/tra.png</normaloff>:/images/tra.png</iconset>
+     <normaloff>:/images/532.png</normaloff>:/images/532.png</iconset>
    </property>
    <property name="text">
-    <string>Translate</string>
+    <string>Start Saving</string>
+   </property>
+  </action>
+  <action name="actionStop_Saving">
+   <property name="icon">
+    <iconset resource="terminal.qrc">
+     <normaloff>:/images/010_x-512.png</normaloff>:/images/010_x-512.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stop Saving</string>
    </property>
   </action>
  </widget>

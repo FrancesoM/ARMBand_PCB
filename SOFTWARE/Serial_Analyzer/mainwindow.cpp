@@ -171,8 +171,11 @@ void MainWindow::readData()
     /*********************************************************************************
      *         User:Manually transfer bytes from queue to the container array        *
      *********************************************************************************/
-
-                  receivedAxis[0] = bytesQueue[offset+2];
+                  for (int pos = 0; pos < 64; pos++)
+                  {
+                    receivedAxis[pos] = bytesQueue[offset+pos+2];
+                  }
+                  /*receivedAxis[0] = bytesQueue[offset+2];
                   receivedAxis[1] = bytesQueue[offset+3];
                   receivedAxis[2] = bytesQueue[offset+4];
                   receivedAxis[3] = bytesQueue[offset+5];
@@ -236,6 +239,7 @@ void MainWindow::readData()
                   receivedAxis[61] = bytesQueue[offset+63];
                   receivedAxis[62] = bytesQueue[offset+64];
                   receivedAxis[63] = bytesQueue[offset+65];
+                  */
 
                   for(int i = 0;i<nData*2;i++){
                       qDebug("%04x",receivedAxis[i]); // << receivedAxis[i];
@@ -254,18 +258,31 @@ void MainWindow::readData()
                     yVec[i] = (float) (temp[i]);
                     if(this->flagSave)
                     {
-                        if(i != nData-1) //Don't put the coma if last data
+                        if(i != nData-1)
                         {
                             *out << temp[i] << ",";
-                        }else
-                        {
-                            *out << temp[i] << "\n";  //New line instead of coma
                         }
                     }
 
                     //qDebug() << yVec[i];
                 }
+
+                if(this->flagSave)
+                {
+                    *out << this->label << "\n";
+                    n_saved++;
+                }
+
+                if(n_saved == 99)
+                {
+                    //This function deals with everything necessary.
+                    //Restores buttons, set flagSave to zero and closes the file.
+                    this->save_off();
+                }
+
                 console->putData(yVec);
+
+
 
                 qDebug() << yVec;
 
@@ -341,6 +358,15 @@ void MainWindow::closeGyro()
 void MainWindow::save_on()
 {
     this->flagSave = 1;
+    this->n_saved = 0;
+    if(ui->filename->text() == QString("Close"))
+    {
+        this->label = CLOSE;
+    }else if(ui->filename->text() == QString("Open"))
+    {
+        this->label = OPEN;
+    }
+
     ui->actionStop_Saving->setEnabled(true);
     ui->actionStart_Saving->setEnabled(false);
     QString fname = ui->filename->text();

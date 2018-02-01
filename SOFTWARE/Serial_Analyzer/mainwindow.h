@@ -125,6 +125,9 @@ private:
 
     int flagGyro;
     int flagSave;
+    typedef enum label_type {CLOSE, OPEN} labelt;
+    labelt label;
+    int n_saved;
 
     Ui::MainWindow *ui;
     QLabel *status;

@@ -125,8 +125,19 @@ private:
 
     int flagGyro;
     int flagSave;
-    typedef enum label_type {CLOSE, OPEN} labelt;
+    typedef enum label_type {CLOSE, OPEN, UP, DOWN, LEFT, RIGHT} labelt;
     labelt label;
+    typedef struct {
+        int cntclose;
+        int cntopen;
+        int cntup;
+        int cntdown;
+        int cntleft;
+        int cntright;
+    } cnttype;
+
+    cnttype cntMovements = {0};
+
     int n_saved;
 
     Ui::MainWindow *ui;

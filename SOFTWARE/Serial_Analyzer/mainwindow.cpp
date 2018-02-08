@@ -359,21 +359,47 @@ void MainWindow::save_on()
 {
     this->flagSave = 1;
     this->n_saved = 0;
-    if(ui->filename->text() == QString("Close"))
-    {
-        this->label = CLOSE;
-    }else if(ui->filename->text() == QString("Open"))
-    {
-        this->label = OPEN;
-    }
 
-    ui->actionStop_Saving->setEnabled(true);
-    ui->actionStart_Saving->setEnabled(false);
     QString fname = ui->filename->text();
     if(fname.length() < 2 )
     {
         fname = "default";
     }
+
+    if(ui->filename->text() == QString("Close"))
+    {
+        this->label = CLOSE;
+        this->cntMovements.cntclose++;
+        fname.append(QString::number(this->cntMovements.cntclose));
+    }else if(ui->filename->text() == QString("Open"))
+    {
+        this->label = OPEN;
+        this->cntMovements.cntopen++;
+        fname.append(QString::number(this->cntMovements.cntopen));
+    }else if(ui->filename->text() == QString("Up"))
+    {
+        this->label = UP;
+        this->cntMovements.cntup++;
+        fname.append(QString::number(this->cntMovements.cntup));
+    }else if(ui->filename->text() == QString("Down"))
+    {
+        this->label = DOWN;
+        this->cntMovements.cntdown++;
+        fname.append(QString::number(this->cntMovements.cntdown));
+    }else if(ui->filename->text() == QString("Left"))
+    {
+        this->label = LEFT;
+        this->cntMovements.cntleft++;
+        fname.append(QString::number(this->cntMovements.cntleft));
+    }else if(ui->filename->text() == QString("Right"))
+    {
+        this->label = RIGHT;
+        this->cntMovements.cntright++;
+        fname.append(QString::number(this->cntMovements.cntright));
+    }
+
+    ui->actionStop_Saving->setEnabled(true);
+    ui->actionStart_Saving->setEnabled(false);
 
     fname.append(".txt");
 

@@ -186,6 +186,8 @@ if __name__=="__main__":
     y_train = keras.utils.to_categorical(y_train, num_classes)
     y_test = keras.utils.to_categorical(y_test, num_classes)
     
+    """ Here starts the machine learning """
+    
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(2, 2),
                      activation='relu',
@@ -211,7 +213,7 @@ if __name__=="__main__":
               validation_data=(x_test, y_test))
     score = model.evaluate(x_test, y_test, verbose=0)
     
-    outputtt = model.save("Cazzopupu.h5")
+    outputtt = model.save("out.h5")
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
     

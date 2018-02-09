@@ -42,8 +42,8 @@ def npopen(path_):
 
 if __name__ == '__main__':
     
-    name = "pc1"
-    D = npopen(path_ + name + extension )
+    name = "Close1"
+    D = npopen(name + extension )
     
     for k in D.keys():
         print(k,':',D[k])

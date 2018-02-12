@@ -6,15 +6,27 @@ Created on Thu Feb  8 17:47:25 2018
 """
 
 #First open the data files
-import keras
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras import backend as K
+try:
+    import keras
+    from keras.datasets import mnist
+    from keras.models import Sequential
+    from keras.layers import Dense, Dropout, Flatten
+    from keras.layers import Conv2D, MaxPooling2D
+    from keras import backend as K
+    print("Keras found")
+
+except ModuleNotFoundError:
+    keras_is_installed = 0
+    print("Keras is not found, the program will skip the learning...")
+
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import axes3d, Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+from scipy import interpolate
 import os
+import sys
 import random
 
 def readata(name):
@@ -123,6 +135,8 @@ def traintest(data,labels,percentage):
 
 
 if __name__=="__main__":
+
+    labels = ['Close','Open','Up','Down']
     
     data = list(map(readata,(list(filter(lambda name: name.find('txt') > 0,os.listdir())))))
     
@@ -181,39 +195,79 @@ if __name__=="__main__":
     print('x_train shape:', x_train.shape)
     print(x_train.shape[0], 'train samples')
     print(x_test.shape[0], 'test samples')
+
+    #if I want to print the data
+
+    try:
+        if sys.argv[1] == "p":
+            plot3 = 1
+        else:
+            plot3 = 0
+    except IndexError:
+        plot3 = 0
+
+    if plot3:
+
+        X, Y = np.mgrid[0:7:8j,0:3:4j]
+        xnew, ynew = np.mgrid[0:7:100j,0:3:100j]
+
+        fig3dintpol = []
+        axsurfintpol = []
+
+        for l in range(len(labels)):
+
+            Z = np.average(x_train[y_train==l,0,:,:],axis=0)
+            tck = interpolate.bisplrep(X, Y, Z, kx = 2, ky = 2)
+            znew = interpolate.bisplev(xnew[:,0], ynew[0,:], tck)
+        
+            #prepare axes and plot the 3d interpolated data
+            #fig3d = plt.figure()
+            #axsurf = fig3d.gca(projection='3d')
+            #axsurf.plot_surface(X, Y, Z, cmap='summer', rstride=1, cstride=1, alpha=None)
+
+            #plot only the interpolated one
+            fig3dintpol.append(plt.figure(figsize=(12,12)))
+            axsurfintpol.append(fig3dintpol[l].gca(projection='3d'))
+            axsurfintpol[l].plot_surface(xnew, ynew, znew, cmap='summer', rstride=1, cstride=1, alpha=None, antialiased=True)
+
+        plt.show()
+
+    if keras_is_installed != 0:
     
-    # convert class vectors to binary class matrices
-    y_train = keras.utils.to_categorical(y_train, num_classes)
-    y_test = keras.utils.to_categorical(y_test, num_classes)
+        # convert class vectors to binary class matrices
+        y_train = keras.utils.to_categorical(y_train, num_classes)
+        y_test = keras.utils.to_categorical(y_test, num_classes)
+        
+        """ Here starts the machine learning """
+        
+        model = Sequential()
+        model.add(Conv2D(32, kernel_size=(2, 2),
+                         activation='relu',
+                         input_shape=input_shape,data_format='channels_first'))
+     
+        model.add(Conv2D(64, (2, 2), activation='relu'))
+        
+        #model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.25))
+        model.add(Flatten())
+        model.add(Dense(128, activation='relu'))
+        model.add(Dropout(0.5))
+        model.add(Dense(num_classes, activation='softmax'))
+        
+        model.compile(loss=keras.losses.categorical_crossentropy,
+                      optimizer=keras.optimizers.Adadelta(),
+                      metrics=['accuracy'])
+        
+        model.fit(x_train, y_train,
+                  batch_size=batch_size,
+                  epochs=epochs,
+                  verbose=1,
+                  validation_data=(x_test, y_test))
+        score = model.evaluate(x_test, y_test, verbose=0)
+        
+        outputtt = model.save("out.h5")
+        print('Test loss:', score[0])
+        print('Test accuracy:', score[1])
     
-    """ Here starts the machine learning """
-    
-    model = Sequential()
-    model.add(Conv2D(32, kernel_size=(2, 2),
-                     activation='relu',
-                     input_shape=input_shape,data_format='channels_first'))
- 
-    model.add(Conv2D(64, (2, 2), activation='relu'))
-    
-    #model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
-    model.add(Flatten())
-    model.add(Dense(128, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(num_classes, activation='softmax'))
-    
-    model.compile(loss=keras.losses.categorical_crossentropy,
-                  optimizer=keras.optimizers.Adadelta(),
-                  metrics=['accuracy'])
-    
-    model.fit(x_train, y_train,
-              batch_size=batch_size,
-              epochs=epochs,
-              verbose=1,
-              validation_data=(x_test, y_test))
-    score = model.evaluate(x_test, y_test, verbose=0)
-    
-    outputtt = model.save("out.h5")
-    print('Test loss:', score[0])
-    print('Test accuracy:', score[1])
-    
+            
+            

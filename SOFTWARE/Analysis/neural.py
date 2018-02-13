@@ -14,6 +14,7 @@ try:
     from keras.layers import Conv2D, MaxPooling2D
     from keras import backend as K
     print("Keras found")
+    keras_is_installed = 1
 
 except ModuleNotFoundError:
     keras_is_installed = 0
